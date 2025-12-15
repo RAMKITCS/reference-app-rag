@@ -7,7 +7,9 @@ import {
   X, 
   ArrowRight,
   Sparkles,
-  Check
+  Check,
+  FileSpreadsheet,
+  File
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,11 +21,17 @@ import { cn } from '@/lib/utils';
 const processingStages = [
   { name: 'OCR & Text Extraction', description: 'Extracting text from documents with high accuracy' },
   { name: 'Entity Extraction', description: 'Identifying named entities, dates, and key terms' },
-  { name: 'PII Detection', description: 'Detecting and flagging sensitive information' },
-  { name: 'Semantic Chunking', description: 'Splitting documents into meaningful segments' },
-  { name: 'Vector Indexing', description: 'Creating searchable embeddings for retrieval' },
-  { name: 'Knowledge Graph', description: 'Building entity relationships and context links' },
+  { name: 'Embedding Generation', description: 'Creating vector embeddings with Azure OpenAI' },
+  { name: 'Vector Indexing', description: 'Building FAISS index for fast retrieval' },
+  { name: 'Graph Construction', description: 'Creating Neo4j knowledge graph relationships' },
+  { name: 'Quality Analysis', description: 'Calculating chunk quality scores' },
 ];
+
+const getFileIcon = (type: string) => {
+  if (type.includes('pdf')) return FileText;
+  if (type.includes('csv') || type.includes('spreadsheet') || type.includes('excel')) return FileSpreadsheet;
+  return File;
+};
 
 export default function UploadPage() {
   const navigate = useNavigate();
@@ -63,14 +71,12 @@ export default function UploadPage() {
     setIsProcessing(true);
     setProcessingStage(0);
     
-    // Simulate processing stages
     let stage = 0;
     const interval = setInterval(() => {
       stage++;
       setProcessingStage(stage);
       if (stage >= processingStages.length) {
         clearInterval(interval);
-        // Add documents to store
         const newDocs = uploadedFiles.map((file, i) => ({
           id: `doc-${Date.now()}-${i}`,
           name: file.name,
@@ -100,7 +106,7 @@ export default function UploadPage() {
         >
           <h1 className="text-4xl font-bold tracking-tight mb-4">Upload Documents</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Upload your documents for processing. ACBO will analyze, chunk, and index them for optimal retrieval.
+            Upload your documents for processing. TrueContext AI will analyze, chunk, and index them for quality-first retrieval.
           </p>
         </motion.div>
 
@@ -136,7 +142,7 @@ export default function UploadPage() {
                     onChange={handleFileInput}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     disabled={isProcessing}
-                    accept=".pdf,.doc,.docx,.txt,.md"
+                    accept=".pdf,.doc,.docx,.txt,.md,.csv,.xlsx"
                   />
                   <div className="flex flex-col items-center gap-3">
                     <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
@@ -144,7 +150,7 @@ export default function UploadPage() {
                     </div>
                     <div>
                       <p className="font-medium">Drop files here or click to upload</p>
-                      <p className="text-sm text-muted-foreground">PDF, DOC, DOCX, TXT, MD supported</p>
+                      <p className="text-sm text-muted-foreground">PDF, DOCX, CSV, TXT supported</p>
                     </div>
                   </div>
                 </div>
@@ -156,29 +162,32 @@ export default function UploadPage() {
                       {uploadedFiles.length} file(s) ready
                     </p>
                     <div className="max-h-48 overflow-y-auto space-y-2">
-                      {uploadedFiles.map((file, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-3 rounded-lg border border-border bg-card/50 p-3"
-                        >
-                          <FileText className="h-5 w-5 text-primary shrink-0" />
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium truncate">{file.name}</p>
-                            <p className="text-xs text-muted-foreground">
-                              {(file.size / 1024 / 1024).toFixed(2)} MB
-                            </p>
+                      {uploadedFiles.map((file, index) => {
+                        const FileIcon = getFileIcon(file.type);
+                        return (
+                          <div
+                            key={index}
+                            className="flex items-center gap-3 rounded-lg border border-border bg-card/50 p-3"
+                          >
+                            <FileIcon className="h-5 w-5 text-primary shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <p className="font-medium truncate">{file.name}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {(file.size / 1024 / 1024).toFixed(2)} MB
+                              </p>
+                            </div>
+                            {!isProcessing && (
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => removeFile(index)}
+                              >
+                                <X className="h-4 w-4" />
+                              </Button>
+                            )}
                           </div>
-                          {!isProcessing && (
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => removeFile(index)}
-                            >
-                              <X className="h-4 w-4" />
-                            </Button>
-                          )}
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -191,7 +200,7 @@ export default function UploadPage() {
                     disabled={uploadedFiles.length === 0 || isProcessing}
                     onClick={startProcessing}
                   >
-                    {isProcessing ? 'Processing...' : 'Start Processing'}
+                    {isProcessing ? 'Processing...' : 'Process Documents'}
                   </Button>
                 </div>
               </CardContent>
@@ -227,10 +236,10 @@ export default function UploadPage() {
                   <div className="flex items-start gap-3">
                     <Sparkles className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-medium text-primary">ACBO Innovation</p>
+                      <p className="font-medium text-primary">TrueContext Innovation</p>
                       <p className="text-sm text-muted-foreground">
-                        ACBO enriches each chunk with metadata, entity links, and contextual markers 
-                        for quality-first retrieval and intelligent budget allocation.
+                        TrueContext enriches each chunk with contextual metadata: document type, section,
+                        key entities, and quality scores for quality-first retrieval.
                       </p>
                     </div>
                   </div>
@@ -246,10 +255,10 @@ export default function UploadPage() {
                     <Button 
                       className="w-full" 
                       size="lg"
-                      onClick={() => navigate('/workspace')}
+                      onClick={() => navigate('/query')}
                     >
                       <Check className="h-4 w-4 mr-2" />
-                      Continue to Workspace
+                      Continue to Query
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </Button>
                   </motion.div>
