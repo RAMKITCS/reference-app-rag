@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Brain,
+  Sparkles,
   LayoutDashboard,
   Upload,
   MessageSquare,
@@ -11,16 +11,19 @@ import {
   Settings,
   LogOut,
   ChevronRight,
+  GitCompare,
+  FileText,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/useAppStore';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { path: '/workspace', icon: MessageSquare, label: 'Workspace' },
+  { path: '/query', icon: MessageSquare, label: 'Query' },
+  { path: '/comparison', icon: GitCompare, label: 'Compare' },
+  { path: '/chat', icon: MessageSquare, label: 'Chat' },
+  { path: '/insurance-quote', icon: FileText, label: 'Insurance Quote' },
   { path: '/quality-lab', icon: Gauge, label: 'Quality Lab' },
-  { path: '/budget-optimizer', icon: BarChart3, label: 'Budget Optimizer' },
-  { path: '/learning', icon: Lightbulb, label: 'Learning' },
   { path: '/analytics', icon: LayoutDashboard, label: 'Analytics' },
 ];
 
@@ -46,12 +49,12 @@ export function Header({ showNav = true }: HeaderProps) {
     >
       <div className="container flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link to="/domain-selector" className="flex items-center gap-3 group">
+        <Link to="/upload" className="flex items-center gap-3 group">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/25 transition-transform group-hover:scale-105">
-            <Brain className="h-5 w-5 text-primary-foreground" />
+            <Sparkles className="h-5 w-5 text-primary-foreground" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-lg tracking-tight">ACBO Pilot</span>
+            <span className="font-bold text-lg tracking-tight">TrueContext AI</span>
             {selectedDomain && (
               <span className="text-xs text-muted-foreground flex items-center gap-1">
                 <ChevronRight className="h-3 w-3" />
@@ -63,7 +66,7 @@ export function Header({ showNav = true }: HeaderProps) {
 
         {/* Navigation */}
         {showNav && (
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => {
               const isActive = location.pathname === item.path;
               return (

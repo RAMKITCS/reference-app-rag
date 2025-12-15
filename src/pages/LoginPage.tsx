@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Brain, Zap, Shield, TrendingUp, GitCompare, Mail, Lock, Chrome } from 'lucide-react';
+import { Sparkles, Zap, Shield, TrendingUp, GitCompare, Mail, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,8 +25,8 @@ const features = [
   },
   {
     icon: GitCompare,
-    title: 'Split-Screen Comparison',
-    description: 'See ACBO vs baseline side-by-side',
+    title: 'Side-by-Side Comparison',
+    description: 'See TrueContext vs Standard RAG in real-time',
   },
 ];
 
@@ -39,12 +39,12 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     login(email, password);
-    navigate('/domain-selector');
+    navigate('/upload');
   };
 
   const handleDemoMode = () => {
-    login('demo@acbo.ai', 'demo');
-    navigate('/domain-selector');
+    login('demo@truecontext.ai', 'demo');
+    navigate('/upload');
   };
 
   return (
@@ -69,11 +69,11 @@ export default function LoginPage() {
               transition={{ type: 'spring', duration: 0.8 }}
               className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-xl shadow-primary/30"
             >
-              <Brain className="h-8 w-8 text-primary-foreground" />
+              <Sparkles className="h-8 w-8 text-primary-foreground" />
             </motion.div>
             <div>
-              <h1 className="text-4xl font-bold tracking-tight">ACBO Pilot</h1>
-              <p className="text-muted-foreground">Adaptive Context Budget Orchestrator</p>
+              <h1 className="text-4xl font-bold tracking-tight">TrueContext AI</h1>
+              <p className="text-muted-foreground">Enterprise Document Intelligence Platform</p>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ export default function LoginPage() {
             className="text-lg text-muted-foreground mb-12 leading-relaxed"
           >
             Experience next-generation RAG with quality-first retrieval, intelligent budget optimization, 
-            and continuous learning. See the difference with real-time baseline comparison.
+            and continuous learning. Compare Standard RAG vs TrueContext AI side-by-side.
           </motion.p>
 
           <div className="grid grid-cols-2 gap-4">
@@ -113,8 +113,8 @@ export default function LoginPage() {
         >
           <Card glass className="border-border/50">
             <CardHeader className="text-center pb-2">
-              <CardTitle className="text-2xl">Welcome Back</CardTitle>
-              <CardDescription>Sign in to continue to ACBO Pilot</CardDescription>
+              <CardTitle className="text-2xl">Welcome</CardTitle>
+              <CardDescription>Sign in to TrueContext AI</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <form onSubmit={handleLogin} className="space-y-4">
