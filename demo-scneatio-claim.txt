@@ -213,3 +213,273 @@ If you want next:
 * 🧪 **Additional BFSI scenarios (fraud detection, compliance review)**
 
 Just tell me 👍
+
+Perfect — below are **additional high-impact BFSI use cases**, written in the **same practical, demo-ready format** as your underwriting scenario.
+These are **real enterprise workflows** where **long context, multiple documents, and quality failures** are common — making ACBO shine.
+
+---
+
+# 🏦 BFSI USE CASE 2: Claims Adjudication & Fraud Risk Assessment
+
+## Scenario — Complex Claim Review with Historical Context
+
+### 🎯 Business Situation
+
+A claims adjuster must:
+
+* Review a **large claim**
+* Analyze **incident details**
+* Compare against **policy wording**
+* Cross-check **historical claims**
+* Flag **potential fraud indicators**
+
+This often involves **hundreds of pages** across multiple documents.
+
+---
+
+## 📥 Documents Provided as Input
+
+1. **Claim Submission File** (PDF – 20–40 pages)
+
+   * Incident description
+   * Supporting invoices
+   * Photos / reports (text extracted)
+
+2. **Policy Document** (PDF – 50–120 pages)
+
+   * Coverage clauses
+   * Exclusions
+   * Sublimits
+
+3. **Prior Claims History** (CSV / PDF – 5–10 years)
+
+   * Frequency patterns
+   * Similar claim types
+
+4. **Investigation Notes** (Unstructured text)
+
+   * Adjuster remarks
+   * Third-party findings
+
+---
+
+## 🎤 Query to Ask ACBO
+
+> “Determine claim eligibility, applicable coverage, payable amount, and assess fraud risk based on historical patterns. Explain all decisions with evidence.”
+
+---
+
+## ❌ Baseline RAG Failure
+
+| Issue                      | Why It Fails                     |
+| -------------------------- | -------------------------------- |
+| Misses exclusions          | Spread across endorsements       |
+| Ignores history            | Patterns across years not linked |
+| Hallucinates fraud signals | No grounding                     |
+| Incomplete payout logic    | Context overflow                 |
+| No explainability          | No traceability                  |
+
+---
+
+## ✅ ACBO Output
+
+* **Claim Eligibility:** Approved / Denied with clause references
+* **Payable Amount:** Calculated with sublimit logic
+* **Fraud Risk Score:** Medium / High / Low
+* **Historical Pattern Analysis:** Claim clustering identified
+* **Evidence Citations:** Policy p.34, Claims p.8–14
+* **Confidence Score:** 92%
+
+📌 *Why judges love this:*
+This directly reduces **claims leakage**, a **multi-billion dollar BFSI problem**.
+
+---
+
+# 🏦 BFSI USE CASE 3: Credit Risk & Loan Approval (Retail / SME)
+
+## Scenario — Loan Approval Using Financial History
+
+### 🎯 Business Situation
+
+A credit officer evaluates:
+
+* Loan application
+* Financial statements
+* Bank transaction history
+* Credit bureau reports
+* Existing loan exposure
+
+Documents are **long, noisy, and heterogeneous**.
+
+---
+
+## 📥 Documents Provided as Input
+
+1. **Loan Application Form**
+2. **Financial Statements** (PDF – 30–60 pages)
+3. **Bank Statements** (12–36 months)
+4. **Credit Bureau Report**
+5. **Collateral Documents**
+
+---
+
+## 🎤 Query to Ask ACBO
+
+> “Assess borrower credit risk, repayment capacity, and recommend approval terms. Highlight risk drivers.”
+
+---
+
+## ❌ Baseline RAG Failure
+
+* Picks only top-K pages
+* Misses trends in cash flow
+* Fails to link liabilities across documents
+* Hallucinates risk justification
+* No risk confidence score
+
+---
+
+## ✅ ACBO Output
+
+* **Credit Risk Rating:** Low / Medium / High
+* **Debt Service Coverage Ratio:** Computed
+* **Red Flags:** Irregular cash flow in Q3
+* **Approval Recommendation:** Conditional approval
+* **Evidence:** Bank stmt p.18, Financials p.7
+* **Confidence Score:** 90%
+
+📌 *Why this matters:*
+Regulators require **explainable credit decisions**.
+
+---
+
+# 🏦 BFSI USE CASE 4: Regulatory Compliance & Audit Readiness
+
+## Scenario — Regulatory Audit Preparation
+
+### 🎯 Business Situation
+
+Compliance teams must:
+
+* Prove adherence to regulations
+* Answer regulator queries
+* Show evidence across years of data
+
+Failure = **fines + reputational damage**.
+
+---
+
+## 📥 Documents Provided as Input
+
+1. **Internal Policies & SOPs**
+2. **Transaction Logs**
+3. **Audit Reports**
+4. **Regulatory Guidelines**
+5. **Email / Incident Logs**
+
+---
+
+## 🎤 Query to Ask ACBO
+
+> “Identify compliance gaps and generate an audit-ready summary with evidence.”
+
+---
+
+## ❌ Baseline RAG Failure
+
+* Misses conflicting policies
+* Fails to trace transactions end-to-end
+* Produces generic summaries
+* No audit trail
+
+---
+
+## ✅ ACBO Output
+
+* **Compliance Status:** Pass / At Risk
+* **Gap Analysis:** Missing controls identified
+* **Evidence Links:** Policy p.22, Audit p.9
+* **Remediation Suggestions:** Clearly scoped
+* **Confidence Level:** 94%
+
+📌 *Judge hook:*
+This demonstrates **trustworthy AI**, not just smart AI.
+
+---
+
+# 🏦 BFSI USE CASE 5: AML / Transaction Monitoring
+
+## Scenario — Suspicious Activity Investigation
+
+### 🎯 Business Situation
+
+AML teams analyze:
+
+* High-volume transaction logs
+* Customer profiles
+* Historical alerts
+* Regulatory thresholds
+
+---
+
+## 📥 Documents Provided as Input
+
+1. **Transaction Data** (CSV – millions of rows)
+2. **Customer KYC Profile**
+3. **Past SARs**
+4. **Regulatory Rules**
+
+---
+
+## 🎤 Query to Ask ACBO
+
+> “Identify suspicious patterns and justify SAR filing decision.”
+
+---
+
+## ❌ Baseline RAG Failure
+
+* Loses sequence of transactions
+* Misses temporal patterns
+* Hallucinates suspicious intent
+* High false positives
+
+---
+
+## ✅ ACBO Output
+
+* **Suspicion Level:** High
+* **Pattern Identified:** Structuring across accounts
+* **Time-based reasoning:** Transactions split over 72 hrs
+* **Evidence:** Transactions ID list
+* **Confidence Score:** 95%
+
+---
+
+# 🎯 WHY THESE USE CASES WIN HACKATHONS
+
+Across **all BFSI scenarios**, ACBO demonstrates:
+
+✔ Long-context handling
+✔ Context-aware chunking
+✔ Quality-first retrieval
+✔ Evidence-backed reasoning
+✔ Regulatory-grade explainability
+
+---
+
+## 💡 ONE SLIDE SUMMARY FOR JUDGES
+
+> “ACBO enables **trustworthy AI for BFSI** by ensuring **high-quality context before generation**, making underwriting, claims, credit, AML, and compliance decisions **accurate, auditable, and production-ready**.”
+
+---
+
+If you want next:
+
+* 📊 **Side-by-side output screenshots**
+* 🎤 **Judge-ready demo narration**
+* 🧪 **Synthetic BFSI datasets**
+* 🧠 **Why this is patent-worthy**
+
+Just say the word.
+
