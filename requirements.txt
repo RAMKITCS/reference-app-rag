@@ -1,0 +1,35 @@
+# FastAPI Core
+fastapi==0.110.0
+uvicorn[standard]==0.29.0
+python-multipart==0.0.9
+pydantic==2.6.4
+pydantic-settings==2.2.1
+
+# Database
+sqlalchemy==2.0.29
+neo4j==5.19.0
+
+# AI/ML
+openai==1.14.0
+langchain==0.1.14
+langchain-openai==0.1.1
+langchain-community==0.0.29
+langsmith==0.1.29
+faiss-cpu==1.8.0
+tiktoken==0.6.0
+
+# Document Processing
+pypdf2==3.0.1
+python-docx==1.1.0
+pandas==2.2.1
+
+# Vector & Embeddings
+numpy==1.26.4
+scikit-learn==1.4.1.post1
+
+# PDF Generation
+reportlab==4.1.0
+
+# Utilities
+python-dotenv==1.0.1
+python-jose[cryptography]==3.3.0
