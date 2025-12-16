@@ -1,0 +1,217 @@
+arios
+
+16 December 2025
+03:44
+
+Below is a curated list of BFSI demo scenarios that perfectly expose context window challenges, retrieval failures, hallucination issues, policy logic, and the power of ACBO — all while staying realistic for underwriting, claims, audit, and risk assessment.
+These are PRACTICAL inputs you can load into your system and use in live judging.
+
+✅ TOP BFSI Demo Inputs You Can Use to Showcase ACBO vs Baseline
+I grouped them into 4 categories:
+	1. Underwriting Scenarios
+	2. Claims Scenarios
+	3. Risk & Compliance Scenarios
+	4. Financial & Audit Scenarios
+Each scenario includes:
+	• Documents to upload
+	• Query to ask
+	• What Baseline RAG will miss
+	• What ACBO will correctly output
+This lets judges visually see the advantage.
+
+🟦 1. UNDERWRITING SCENARIOS (Most impactful for BFSI demo)
+
+Scenario 1 — Generate Quote from Old Policy + Loss Run
+📄 Documents to upload:
+	1. Old Policy PDF (40–100 pages)
+	2. Loss Run (5-year history)
+	3. Supplemental application or risk questionnaire
+🎤 Query to ask ACBO:
+	“Generate 3 quote options (basic, standard, premium) using historical losses, old policy factors, and risk characteristics. Explain the impact of each factor.”
+🔻 Baseline RAG will fail:
+	• Misses loss run patterns (because they are spread across pages)
+	• Ignores deductible options scattered in old policy
+	• Wrongly mixes premium basis
+	• Hallucinates coverage factors not in documents
+🔺 ACBO will produce:
+	• 3 structured quote options:
+		○ Limits, deductibles, premium estimates
+		○ Risk-based price adjustments
+	• Evidence citations: Loss Run p.4, Policy p.12, Underwriting Guide p.9
+	• Confidence score
+	• Token budget allocation
+	• Full reasoning
+
+Scenario 2 — Renewal Pricing from Big Documents
+📄 Inputs:
+	• Claims history (multi-year)
+	• Old renewal quote
+	• Property schedule
+	• Engineering report (long → 80 pages!)
+🎤 Query:
+	“Provide renewal pricing recommendation with justification.”
+Baseline:
+❌ Misses engineering details on fire risk
+❌ Omits claims frequency increases
+❌ Truncates output
+ACBO:
+✅ Reads engineering report → picks only relevant structural risks
+✅ Computes patterns across documents
+✅ Full recommendation table
+✅ Evidence + confidence score
+
+Scenario 3 — Eligibility Check from Long Submission Pack
+Documents:
+	• 150-page submission
+	• 40-page financial report
+	• 20-page safety compliance report
+Query:
+	“Is this risk eligible for coverage under underwriting guidelines? List mandatory conditions.”
+
+🟧 2. CLAIMS SCENARIOS (Highly impressive because ACBO shines in context engineering)
+
+Scenario 4 — Injury Summary from Claim File (Baseline will fail dramatically)
+Documents:
+	• 150-page medical record
+	• Policy document
+	• X-ray report
+	• Treatment plan
+	• Doctor notes
+Query:
+	“Summarize claimant injuries and provide evidence-based recovery timeline.”
+Baseline:
+❌ Misses injuries mentioned once
+❌ Confuses left/right
+❌ Hallucinates treatment timeline
+❌ Cannot recover scattered info
+ACBO:
+✅ Injury: “Left tibia mid-shaft fracture”
+✅ Cites 5 evidence points
+✅ Recovery timeline based on medical guidelines
+✅ Clear grounded reasoning
+
+Scenario 5 — Coverage Decision
+Documents:
+	• Policy wording
+	• Claim description
+	• Adjuster diary notes
+Query:
+	“Is this claim covered? Explain clause-by-clause with citations.”
+Baseline:
+❌ Wrong clause
+❌ Misses exclusions
+❌ Confusion between sections
+ACBO:
+✅ Checks multiple cross-references
+✅ Clause-level grounding
+✅ Indicates uncertainty explicitly
+✅ Produces a regulatory-safe answer
+
+Scenario 6 — Fraud Pattern Detection from Multiple PDFs
+Documents:
+	• Two different claim files
+	• Loss run
+	• Injury report
+Query:
+	“Do any patterns suggest potential fraud? Show evidence.”
+Baseline:
+❌ Cannot connect patterns (missing multi-hop reasoning)
+ACBO:
+✅ Identifies repeated doctor, same treatment pattern
+✅ Highlights anomalies using graph
+✅ Shows evidence paths
+
+🟨 3. RISK & COMPLIANCE SCENARIOS (Very strong for BFSI judges)
+
+Scenario 7 — AML/KYC Red Flags
+Documents:
+	• Customer KYC form
+	• 6 months of bank statements
+	• High-value transactions report
+	• Sanctions list snippet
+Query:
+	“Identify AML red flags and potential risk score.”
+Baseline:
+❌ Misses cross-document transaction anomalies
+❌ Cannot fuse customer profile + statements
+ACBO:
+✅ Finds structuring
+✅ Finds cross-border high-risk transfers
+✅ Matches entities in sanctions (via graph)
+✅ Provides explainable reasoning
+
+Scenario 8 — Regulatory Compliance Gap
+Documents:
+	• 80-page regulatory PDF
+	• Bank internal SOP
+	• Audit findings
+Query:
+	“Identify compliance gaps and provide a mitigation plan.”
+Baseline: Noise, random mismatches
+ACBO: Structured output, traceability
+
+🟩 4. FINANCIAL ANALYSIS AND AUDIT SCENARIOS
+
+Scenario 9 — Analytical Summary of Financial Statements
+Documents:
+	• Balance sheet
+	• Income statement
+	• Cash flow
+	• Auditor’s report
+	• Risk disclosures
+Query:
+	“Provide financial health summary and investment risk overview.”
+Baseline:
+❌ Wrong ratios, incomplete
+ACBO:
+✅ Full breakdown + evidence + confidence
+
+Scenario 10 — Multi-Document Reconciliation
+Documents:
+	• Bank statement
+	• Credit card statement
+	• Loan agreement
+Query:
+	“Identify inconsistencies in financial transactions.”
+ACBO shines because of cross-document linking.
+
+⭐ BEST DEMO SCENARIO (Guaranteed to impress judges)
+“Upload Old Policy + Loss Run + Submission → Generate 3 Quote Options, with evidence.”
+Why it works:
+	• Shows long document context handling
+	• Shows RAG failures
+	• Shows ACBO's budget optimizer
+	• Produces a tangible business output
+	• BFSI judges understand it instantly
+	• Clear ROI
+
+🧪 What Judges Will See Live
+Baseline:
+❌ Incomplete
+❌ Wrong factors
+❌ No evidence
+❌ Truncated output
+❌ No reasoning
+ACBO:
+✅ Perfect retrieval
+✅ Evidence mapped with graphs
+✅ Fully formatted underwriting recommendations
+✅ Quality score (85–95%)
+✅ Token efficiency (cost saving visible)
+✅ Zero hallucinations
+
+🎯 Recommendation for Your Demo Flow (2–3 minutes)
+	1. Upload documents
+	2. Run Baseline RAG → show failure
+	3. Run ACBO → show quality gates, optimizer, full output
+	4. Highlight difference: accuracy, cost, groundedness
+This will 100% impress BFSI judges and show you solved the exact problem given.
+
+If you want, I can now generate:
+✅ Pre-made PDFs (dummy data) for the judges
+✅ Judge demo script (verbatim spoken words)
+✅ Demo sequence with timings
+✅ Suggested queries
+✅ A one-page BFSI problem → solution mapping slide
+Just tell me:
+“Generate BFSI demo pack.”
