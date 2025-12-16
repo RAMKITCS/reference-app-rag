@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Character Encoding -->
+    <meta charset="UTF-8" />
+    
+    <!-- IE Compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Viewport for Responsive Design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicon (multiple sizes) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Primary Meta Tags -->
+    <title>TrueContext AI - Quality-First RAG with Budget Optimization</title>
+    <meta name="title" content="TrueContext AI - Quality-First RAG System" />
+    <meta name="description" content="Revolutionary RAG system with 6-dimension quality validation before generation. Achieve 40% cost reduction and 36% quality improvement in document processing." />
+    <meta name="keywords" content="RAG, AI, LLM, Quality Validation, Budget Optimization, Insurance, Document Analysis, Enterprise AI, Azure OpenAI" />
+    <meta name="author" content="TrueContext AI Team" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://truecontext-ai.com/" />
+    <meta property="og:title" content="TrueContext AI - Quality-First RAG System" />
+    <meta property="og:description" content="Revolutionary RAG system with 6-dimension quality validation. 40% cost reduction, 36% quality improvement." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://truecontext-ai.com/" />
+    <meta property="twitter:title" content="TrueContext AI - Quality-First RAG" />
+    <meta property="twitter:description" content="Revolutionary RAG system with 6-dimension quality validation." />
+    <meta property="twitter:image" content="/twitter-image.png" />
+    
+    <!-- Theme Color (matches brand) -->
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
+    
+    <!-- DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Optional: Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' http://localhost:8000 https://*.azure.com;" />
+    
+    <!-- Critical CSS (inline for performance) -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f8fafc;
+        color: #1e293b;
+        line-height: 1.6;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Enhanced Loading Screen */
+      .loading-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        animation: gradientShift 3s ease infinite;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      
+      .loading-content {
+        text-align: center;
+        color: white;
+      }
+      
+      .loading-logo {
+        font-size: 48px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        animation: fadeIn 0.5s ease-in;
+      }
+      
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 5px solid rgba(255, 255, 255, 0.2);
+        border-top-color: white;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .loading-text {
+        font-size: 18px;
+        font-weight: 500;
+        animation: fadeIn 0.5s ease-in 0.2s both;
+      }
+      
+      .loading-subtext {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-top: 10px;
+        animation: fadeIn 0.5s ease-in 0.4s both;
+      }
+      
+      /* Progress Bar */
+      .loading-progress {
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+        margin: 20px auto 0;
+        overflow: hidden;
+      }
+      
+      .loading-progress-bar {
+        height: 100%;
+        background: white;
+        border-radius: 2px;
+        animation: progress 2s ease-in-out infinite;
+      }
+      
+      @keyframes progress {
+        0% { width: 0%; }
+        50% { width: 70%; }
+        100% { width: 100%; }
+      }
+      
+      /* No JS Warning */
+      .no-js-warning {
+        padding: 40px;
+        text-align: center;
+        font-family: sans-serif;
+        background: #fef3c7;
+        border: 2px solid #fbbf24;
+        border-radius: 8px;
+        margin: 40px;
+      }
+      
+      .no-js-warning h1 {
+        color: #92400e;
+        margin-bottom: 20px;
+      }
+      
+      .no-js-warning p {
+        color: #78350f;
+        margin-bottom: 10px;
+      }
+    </style>
+    
+    <!-- Optional: Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+    
+    <!-- Optional: Error Tracking (Sentry) -->
+    <!-- <script
+      src="https://browser.sentry-cdn.com/7.x.x/bundle.min.js"
+      integrity="sha384-xxxx"
+      crossorigin="anonymous"
+    ></script> -->
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="root">
+      <div class="loading-container">
+        <div class="loading-content">
+          <div class="loading-logo">🎯 TrueContext AI</div>
+          <div class="loading-spinner"></div>
+          <p class="loading-text">Initializing Quality-First RAG System</p>
+          <p class="loading-subtext">Validating context, optimizing budget...</p>
+          <div class="loading-progress">
+            <div class="loading-progress-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- React App Entry Point -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- No JavaScript Fallback -->
+    <noscript>
+      <div class="no-js-warning">
+        <h1>⚠️ JavaScript Required</h1>
+        <p><strong>TrueContext AI</strong> requires JavaScript to function.</p>
+        <p>Please enable JavaScript in your browser settings to continue.</p>
+        <br />
+        <p style="font-size: 12px; opacity: 0.7;">
+          Modern browsers: Chrome, Firefox, Safari, Edge all support JavaScript by default.
+        </p>
+      </div>
+    </noscript>
+    
+    <!-- Browser Compatibility Warning (optional) -->
+    <script>
+      // Detect old browsers
+      if (!window.Promise || !window.fetch || !Array.prototype.includes) {
+        document.getElementById('root').innerHTML = `
+          <div style="padding: 40px; text-align: center; background: #fee2e2; border: 2px solid #ef4444; border-radius: 8px; margin: 40px;">
+            <h1 style="color: #991b1b;">⚠️ Browser Not Supported</h1>
+            <p style="color: #7f1d1d; margin-top: 20px;">
+              Your browser is outdated and not supported by TrueContext AI.
+            </p>
+            <p style="color: #7f1d1d; margin-top: 10px;">
+              Please upgrade to a modern browser:
+            </p>
+            <ul style="margin-top: 20px; list-style: none;">
+              <li><a href="https://www.google.com/chrome/" style="color: #0ea5e9;">Google Chrome</a></li>
+              <li><a href="https://www.mozilla.org/firefox/" style="color: #0ea5e9;">Mozilla Firefox</a></li>
+              <li><a href="https://www.apple.com/safari/" style="color: #0ea5e9;">Apple Safari</a></li>
+              <li><a href="https://www.microsoft.com/edge" style="color: #0ea5e9;">Microsoft Edge</a></li>
+            </ul>
+          </div>
+        `;
+      }
+    </script>
+  </body>
+</html>
